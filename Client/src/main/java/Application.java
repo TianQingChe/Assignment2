@@ -19,7 +19,7 @@ public class Application {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         //default value
-        int maxThreadNumber = 64;
+        int maxThreadNumber = 256;
 //        String url = "http://34.226.31.240:8080/data";
         String url = "http://127.0.0.1:8080";
         int dayNumber = 100;
@@ -100,7 +100,7 @@ public class Application {
         }
 
         //serialize data
-        File file = new File("object.adt");
+        File file = new File("object4.adt");
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             //将List转换成数组
             Latency[] obj = new Latency[serialList.size()];
