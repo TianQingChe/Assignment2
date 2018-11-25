@@ -19,9 +19,6 @@ import java.util.concurrent.ExecutionException;
 public class WalkController {
 
     @Autowired
-    private WalkRepository walkRepository;
-
-    @Autowired
     private WalkService walkService;
 
     @GetMapping("/")

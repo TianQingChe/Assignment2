@@ -15,7 +15,7 @@ import java.util.concurrent.Executor;
 
 @SpringBootApplication
 @EnableAsync
-@EnableBatchProcessing
+//@EnableBatchProcessing
 public class ServerApplication extends SpringBootServletInitializer implements WebApplicationInitializer, AsyncConfigurer {
 
     @Override

@@ -17,10 +17,10 @@ import java.util.List;
 
 public class Plot extends ApplicationFrame {
     public static void main(String[] args) {
-        int[] buckets = getBuckets("object4.adt");
+        int[] buckets = getBuckets("lambda32.adt");
         Plot chart = new Plot(
                 "Throughtput Chart" ,
-                "Overall Throughput 256 threads 100 iterations",buckets);
+                "Overall Throughput 32 threads 100 iterations",buckets);
         chart.pack( );
         RefineryUtilities.centerFrameOnScreen( chart );
         chart.setVisible( true );

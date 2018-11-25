@@ -19,9 +19,10 @@ public class Application {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         //default value
-        int maxThreadNumber = 256;
+        int maxThreadNumber = 32;
 //        String url = "http://34.226.31.240:8080/data";
-        String url = "http://127.0.0.1:8080";
+        String fileName = "lambda"+maxThreadNumber+".adt";
+        String url = "https://5qun6gawm0.execute-api.us-west-2.amazonaws.com/Prod/server/";
         int dayNumber = 100;
         int userPopulation = 100000;
         int testsPerPhase = 100;
@@ -100,7 +101,7 @@ public class Application {
         }
 
         //serialize data
-        File file = new File("object4.adt");
+        File file = new File(fileName);
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             //将List转换成数组
             Latency[] obj = new Latency[serialList.size()];
@@ -122,6 +123,14 @@ public class Application {
         System.out.println("Median latency: " + getMedianLatency(latencies) + "ms");
         System.out.println("95th percentile latency: " + get95Percent(latencies) + "ms");
         System.out.println("99th percentile latency: " + get99Percent(latencies) + "ms");
+
+        int[] buckets = getBuckets(fileName);
+        Plot chart = new Plot(
+                "Throughtput Chart" ,
+                "Overall Throughput+"+ maxThreadNumber +"threads 100 iterations",buckets);
+        chart.pack( );
+        RefineryUtilities.centerFrameOnScreen( chart );
+        chart.setVisible( true );
     }
 
     private static void doTask(PoolingHttpClientConnectionManager connManager,int threadNum,String url,int iterNum, int dayNumber, int userPopulation,ExecutorService threadPool){
